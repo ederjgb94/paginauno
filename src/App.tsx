@@ -48,6 +48,19 @@ function App() {
     console.log(data);
 
     if (data) {
+      const newUser: User = {
+        nombre: data[0].firstName,
+        apellido: data[0].lastName,
+        id: data[0].id,
+      };
+
+      setUsers((prev) => [...prev, newUser]);
+
+      setForm(initialForm);
+      const inputs = document.querySelectorAll('input');
+      inputs.forEach((input) => {
+        input.value = '';
+      });
 
     }
   };
