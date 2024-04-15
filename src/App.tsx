@@ -38,13 +38,18 @@ function App() {
   const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { error, data } = await supabase.from('users').insert(form);
+    const { error, data } = await supabase.from('users').insert(form).select();
 
     if (error) {
       console.log(error);
       return;
     }
-    if (data) console.log(data);
+
+    console.log(data);
+
+    if (data) {
+
+    }
   };
 
   const deleteUser = async (id: number) => {
@@ -68,18 +73,18 @@ function App() {
         return;
       }
 
+      setUsers([]); // Limpia la lista de usuarios antes de agregar nuevos
+
       data?.forEach(user => {
         const newUser: User = {
           nombre: user.firstName,
           apellido: user.lastName,
           id: user.id,
         };
-
-        setUsers(users => [...users, newUser]);
+        setUsers((prev) => [...prev, newUser]);
       });
     };
 
-    setUsers([]);
     fecthData();
   }, []);
 
