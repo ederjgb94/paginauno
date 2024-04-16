@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import { supabase } from './utils/subabase';
 import UserTable from './UserTable';
+import { Link } from 'react-router-dom';
 
 
 interface Formulario {
@@ -34,6 +35,8 @@ function App() {
       [target.name]: target.value,
     });
   };
+
+
 
   const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
